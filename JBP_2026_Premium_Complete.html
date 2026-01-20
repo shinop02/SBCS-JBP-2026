@@ -105,6 +105,7 @@
             padding: 12px 0 12px 40px;
             position: relative;
             color: #333;
+            transition: all 0.3s;
         }
         
         .agenda-list li:before {
@@ -114,6 +115,24 @@
             color: #FF9900;
             font-size: 22px;
             font-weight: bold;
+            transition: all 0.3s;
+        }
+        
+        .agenda-list li.clickable {
+            cursor: pointer;
+            padding: 12px 10px 12px 40px;
+            margin: 0 -10px;
+            border-radius: 8px;
+        }
+        
+        .agenda-list li.clickable:hover {
+            background: rgba(255, 153, 0, 0.15);
+            transform: translateX(10px);
+        }
+        
+        .agenda-list li.clickable:hover:before {
+            left: 10px;
+            color: #232F3E;
         }
         
         /* Standard Slide */
@@ -559,7 +578,8 @@
             left: 0;
             right: 0;
             bottom: 0;
-            background: rgba(0, 0, 0, 0.75);
+            background: rgba(0, 0, 0, 0.2);
+            backdrop-filter: blur(3px);
             z-index: 2000;
             align-items: center;
             justify-content: center;
@@ -570,14 +590,15 @@
         }
         
         .agenda-popup-content {
-            background: white;
+            background: rgba(255, 255, 255, 0.98);
             border-radius: 16px;
             padding: 40px;
             max-width: 700px;
             width: 90%;
             max-height: 80vh;
             overflow-y: auto;
-            box-shadow: 0 20px 60px rgba(0,0,0,0.3);
+            box-shadow: 0 20px 60px rgba(0,0,0,0.4);
+            border: 2px solid rgba(255, 153, 0, 0.3);
             animation: slideUp 0.3s ease-out;
         }
         
@@ -637,7 +658,7 @@
         .agenda-popup-item {
             padding: 18px 24px;
             margin-bottom: 12px;
-            background: #f8f9fa;
+            background: rgba(248, 249, 250, 0.95);
             border-radius: 12px;
             cursor: pointer;
             transition: all 0.3s;
@@ -645,31 +666,54 @@
             justify-content: space-between;
             align-items: center;
             border-left: 4px solid transparent;
+            border: 2px solid rgba(0, 0, 0, 0.05);
         }
         
         .agenda-popup-item:hover {
-            background: #FF9900;
+            background: rgba(255, 153, 0, 0.95);
             color: white;
             border-left-color: #232F3E;
+            border-color: #FF9900;
             transform: translateX(5px);
-            box-shadow: 0 4px 12px rgba(255, 153, 0, 0.3);
+            box-shadow: 0 4px 12px rgba(255, 153, 0, 0.5);
         }
         
         .agenda-popup-item-text {
             font-size: 18px;
-            font-weight: 500;
+            font-weight: 600;
+            color: #1a1a1a;
+        }
+        
+        .agenda-popup-item:hover .agenda-popup-item-text {
+            color: white;
         }
         
         .agenda-popup-item-slide {
             font-size: 14px;
-            opacity: 0.8;
-            font-weight: 600;
+            opacity: 0.9;
+            font-weight: 700;
+            color: #232F3E;
+        }
+        
+        .agenda-popup-item:hover .agenda-popup-item-slide {
+            color: white;
+            opacity: 1;
         }
         
         .agenda-popup-item.current-slide {
-            background: #232F3E;
+            background: rgba(35, 47, 62, 0.95);
             color: white;
             border-left-color: #FF9900;
+            border-color: #FF9900;
+        }
+        
+        .agenda-popup-item.current-slide .agenda-popup-item-text {
+            color: white;
+        }
+        
+        .agenda-popup-item.current-slide .agenda-popup-item-slide {
+            color: #FF9900;
+            opacity: 1;
         }
         
         .slide-number {
@@ -728,11 +772,11 @@
             <div class="amazon-header">Amazon Confidential</div>
             <h2 class="agenda-title">Agenda</h2>
             <ul class="agenda-list">
-                <li>Executive Summary - 3ブランド統合実績・目標</li>
-                <li>Roborock 詳細分析 - 実績・戦略・競合</li>
-                <li>Tile 詳細分析 - 実績・戦略・競合</li>
-                <li>Toretech 詳細分析 - 実績・戦略・競合</li>
-                <li>2026年投資計画 - 広告・プロモーション</li>
+                <li class="clickable" data-goto="3">Executive Summary - 3ブランド統合実績・目標</li>
+                <li class="clickable" data-goto="6">Roborock 詳細分析 - 実績・戦略・競合</li>
+                <li class="clickable" data-goto="15">Tile 詳細分析 - 実績・戦略・競合</li>
+                <li class="clickable" data-goto="23">Toretech 詳細分析 - 実績・戦略・競合</li>
+                <li class="clickable" data-goto="30">2026年投資計画 - 広告・プロモーション</li>
             </ul>
             <div class="slide-number">2</div>
         </div>
@@ -743,10 +787,10 @@
             <h2 class="agenda-title">Agenda</h2>
             <ul class="agenda-list">
                 <li style="color: #FF9900; font-weight: bold;">Executive Summary - 3ブランド統合実績・目標</li>
-                <li>Roborock 詳細分析 - 実績・戦略・競合</li>
-                <li>Tile 詳細分析 - 実績・戦略・競合</li>
-                <li>Toretech 詳細分析 - 実績・戦略・競合</li>
-                <li>2026年投資計画 - 広告・プロモーション</li>
+                <li class="clickable" data-goto="6">Roborock 詳細分析 - 実績・戦略・競合</li>
+                <li class="clickable" data-goto="15">Tile 詳細分析 - 実績・戦略・競合</li>
+                <li class="clickable" data-goto="23">Toretech 詳細分析 - 実績・戦略・競合</li>
+                <li class="clickable" data-goto="30">2026年投資計画 - 広告・プロモーション</li>
             </ul>
             <div class="slide-number">3</div>
         </div>
@@ -820,11 +864,11 @@
             <div class="amazon-header">Amazon Confidential</div>
             <h2 class="agenda-title">Agenda</h2>
             <ul class="agenda-list">
-                <li>Executive Summary - 3ブランド統合実績・目標</li>
+                <li class="clickable" data-goto="3">Executive Summary - 3ブランド統合実績・目標</li>
                 <li style="color: #FF9900; font-weight: bold;">Roborock 詳細分析 - 実績・戦略・競合</li>
-                <li>Tile 詳細分析 - 実績・戦略・競合</li>
-                <li>Toretech 詳細分析 - 実績・戦略・競合</li>
-                <li>2026年投資計画 - 広告・プロモーション</li>
+                <li class="clickable" data-goto="15">Tile 詳細分析 - 実績・戦略・競合</li>
+                <li class="clickable" data-goto="23">Toretech 詳細分析 - 実績・戦略・競合</li>
+                <li class="clickable" data-goto="30">2026年投資計画 - 広告・プロモーション</li>
             </ul>
             <div class="slide-number">6</div>
         </div>
@@ -1066,11 +1110,11 @@
             <div class="amazon-header">Amazon Confidential</div>
             <h2 class="agenda-title">Agenda</h2>
             <ul class="agenda-list">
-                <li>Executive Summary - 3ブランド統合実績・目標</li>
-                <li>Roborock 詳細分析 - 実績・戦略・競合</li>
+                <li class="clickable" data-goto="3">Executive Summary - 3ブランド統合実績・目標</li>
+                <li class="clickable" data-goto="6">Roborock 詳細分析 - 実績・戦略・競合</li>
                 <li style="color: #FF9900; font-weight: bold;">Tile 詳細分析 - 実績・戦略・競合</li>
-                <li>Toretech 詳細分析 - 実績・戦略・競合</li>
-                <li>2026年投資計画 - 広告・プロモーション</li>
+                <li class="clickable" data-goto="23">Toretech 詳細分析 - 実績・戦略・競合</li>
+                <li class="clickable" data-goto="30">2026年投資計画 - 広告・プロモーション</li>
             </ul>
             <div class="slide-number">15</div>
         </div>
@@ -1329,11 +1373,11 @@
             <div class="amazon-header">Amazon Confidential</div>
             <h2 class="agenda-title">Agenda</h2>
             <ul class="agenda-list">
-                <li>Executive Summary - 3ブランド統合実績・目標</li>
-                <li>Roborock 詳細分析 - 実績・戦略・競合</li>
-                <li>Tile 詳細分析 - 実績・戦略・競合</li>
+                <li class="clickable" data-goto="3">Executive Summary - 3ブランド統合実績・目標</li>
+                <li class="clickable" data-goto="6">Roborock 詳細分析 - 実績・戦略・競合</li>
+                <li class="clickable" data-goto="15">Tile 詳細分析 - 実績・戦略・競合</li>
                 <li style="color: #FF9900; font-weight: bold;">Toretech 詳細分析 - 実績・戦略・競合</li>
-                <li>2026年投資計画 - 広告・プロモーション</li>
+                <li class="clickable" data-goto="30">2026年投資計画 - 広告・プロモーション</li>
             </ul>
             <div class="slide-number">23</div>
         </div>
@@ -1710,10 +1754,10 @@
             <div class="amazon-header">Amazon Confidential</div>
             <h2 class="agenda-title">Agenda</h2>
             <ul class="agenda-list">
-                <li>Executive Summary - 3ブランド統合実績・目標</li>
-                <li>Roborock 詳細分析 - 実績・戦略・競合</li>
-                <li>Tile 詳細分析 - 実績・戦略・競合</li>
-                <li>Toretech 詳細分析 - 実績・戦略・競合</li>
+                <li class="clickable" data-goto="3">Executive Summary - 3ブランド統合実績・目標</li>
+                <li class="clickable" data-goto="6">Roborock 詳細分析 - 実績・戦略・競合</li>
+                <li class="clickable" data-goto="15">Tile 詳細分析 - 実績・戦略・競合</li>
+                <li class="clickable" data-goto="23">Toretech 詳細分析 - 実績・戦略・競合</li>
                 <li style="color: #FF9900; font-weight: bold;">2026年投資計画 - 広告・プロモーション</li>
             </ul>
             <div class="slide-number">30</div>
@@ -2442,12 +2486,22 @@
                 if (e.target === this) closeAgenda();
             });
             
-            // Agenda item clicks
+            // Agenda popup item clicks
             document.querySelectorAll('.agenda-popup-item').forEach(item => {
                 item.addEventListener('click', function() {
                     const slideNum = parseInt(this.getAttribute('data-slide'));
                     goToSlide(slideNum);
                     closeAgenda();
+                });
+            });
+            
+            // Agenda page item clicks (clickable list items)
+            document.querySelectorAll('.agenda-list li.clickable').forEach(item => {
+                item.addEventListener('click', function() {
+                    const slideNum = parseInt(this.getAttribute('data-goto'));
+                    if (slideNum) {
+                        goToSlide(slideNum);
+                    }
                 });
             });
             
