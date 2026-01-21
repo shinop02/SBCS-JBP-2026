@@ -210,6 +210,26 @@
             min-height: 0;
         }
         
+        /* スマホ表示時のグラフ最小高さ設定 */
+        @media (max-width: 768px) {
+            .chart-container {
+                min-height: 400px;
+                height: auto;
+            }
+            
+            .content-area {
+                flex-direction: column;
+            }
+            
+            .content-left, .content-right {
+                width: 100%;
+            }
+            
+            .slide {
+                padding: 30px 20px;
+            }
+        }
+        
         /* Metrics & KPIs */
         .metric-box {
             background: #f8f9fa;
@@ -2031,7 +2051,8 @@
                 },
                 options: {
                     responsive: true,
-                    maintainAspectRatio: false,
+                    maintainAspectRatio: true,
+                    aspectRatio: 2,
                     plugins: {
                         legend: { position: 'bottom', labels: { font: { size: 16 }, padding: 20 } },
                         title: { display: true, text: '2025年 月次売上推移（百万円）', font: { size: 20, weight: 'bold' } }
@@ -2066,7 +2087,8 @@
                 },
                 options: {
                     responsive: true,
-                    maintainAspectRatio: false,
+                    maintainAspectRatio: true,
+                    aspectRatio: 2,
                     plugins: {
                         legend: { position: 'right', labels: { font: { size: 18 }, padding: 25 } },
                         title: { display: true, text: '2025年 ブランド別売上構成', font: { size: 20, weight: 'bold' } }
@@ -2519,4 +2541,3 @@
     </script>
 </body>
 </html>
-
