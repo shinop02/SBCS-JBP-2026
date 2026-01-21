@@ -2021,6 +2021,12 @@
         
         Chart.defaults.font.family = 'Meiryo';
         Chart.defaults.font.size = 14;
+        // デバイスサイズに応じたアスペクト比を取得
+        function getAspectRatio() {
+            return window.innerWidth <= 768 ? 0.8 : 2;
+        }
+        
+
         
         // Chart 4: 3ブランド月次売上推移
         function createChart4() {
@@ -2052,7 +2058,7 @@
                 options: {
                     responsive: true,
                     maintainAspectRatio: true,
-                    aspectRatio: 2,
+                    aspectRatio: getAspectRatio(),
                     plugins: {
                         legend: { position: 'bottom', labels: { font: { size: 16 }, padding: 20 } },
                         title: { display: true, text: '2025年 月次売上推移（百万円）', font: { size: 20, weight: 'bold' } }
@@ -2088,7 +2094,7 @@
                 options: {
                     responsive: true,
                     maintainAspectRatio: true,
-                    aspectRatio: 2,
+                    aspectRatio: getAspectRatio(),
                     plugins: {
                         legend: { position: 'right', labels: { font: { size: 18 }, padding: 25 } },
                         title: { display: true, text: '2025年 ブランド別売上構成', font: { size: 20, weight: 'bold' } }
@@ -2120,7 +2126,8 @@
                 },
                 options: {
                     responsive: true,
-                    maintainAspectRatio: false,
+                    maintainAspectRatio: true,
+                    aspectRatio: getAspectRatio(),
                     plugins: {
                         legend: { display: false },
                         title: { display: true, text: 'roborock 2025年 月次売上推移（百万円）', font: { size: 20, weight: 'bold' } }
@@ -2150,7 +2157,8 @@
                 },
                 options: {
                     responsive: true,
-                    maintainAspectRatio: false,
+                    maintainAspectRatio: true,
+                    aspectRatio: getAspectRatio(),
                     plugins: {
                         legend: { position: 'bottom', labels: { font: { size: 14 }, padding: 15 } },
                         title: { display: true, text: 'roborock 商品別売上構成（2025年11-12月）', font: { size: 18, weight: 'bold' } }
@@ -2178,7 +2186,8 @@
                 },
                 options: {
                     responsive: true,
-                    maintainAspectRatio: false,
+                    maintainAspectRatio: true,
+                    aspectRatio: getAspectRatio(),
                     plugins: {
                         legend: { position: 'bottom', labels: { font: { size: 14 }, padding: 15 } },
                         title: { display: true, text: 'ロボット掃除機カテゴリ月次販売台数推移（千台）', font: { size: 18, weight: 'bold' } }
@@ -2207,7 +2216,8 @@
                 },
                 options: {
                     responsive: true,
-                    maintainAspectRatio: false,
+                    maintainAspectRatio: true,
+                    aspectRatio: getAspectRatio(),
                     plugins: {
                         legend: { display: false },
                         title: { display: true, text: 'roborock 2026年 月別広告費試算（百万円）', font: { size: 20, weight: 'bold' } }
@@ -2242,7 +2252,8 @@
                 },
                 options: {
                     responsive: true,
-                    maintainAspectRatio: false,
+                    maintainAspectRatio: true,
+                    aspectRatio: getAspectRatio(),
                     plugins: {
                         legend: { display: false },
                         title: { display: true, text: 'Tile 2025年 月次売上推移（百万円）', font: { size: 20, weight: 'bold' } }
@@ -2272,7 +2283,8 @@
                 },
                 options: {
                     responsive: true,
-                    maintainAspectRatio: false,
+                    maintainAspectRatio: true,
+                    aspectRatio: getAspectRatio(),
                     plugins: {
                         legend: { position: 'bottom', labels: { font: { size: 14 }, padding: 15 } },
                         title: { display: true, text: 'Tile 商品別売上構成', font: { size: 18, weight: 'bold' } }
@@ -2298,7 +2310,8 @@
                 },
                 options: {
                     responsive: true,
-                    maintainAspectRatio: false,
+                    maintainAspectRatio: true,
+                    aspectRatio: getAspectRatio(),
                     plugins: {
                         legend: { display: false },
                         title: { display: true, text: 'Tile 2026年 月別広告費試算（百万円）', font: { size: 20, weight: 'bold' } }
@@ -2334,7 +2347,8 @@
                 },
                 options: {
                     responsive: true,
-                    maintainAspectRatio: false,
+                    maintainAspectRatio: true,
+                    aspectRatio: getAspectRatio(),
                     plugins: {
                         legend: { position: 'bottom', labels: { font: { size: 16 }, padding: 20 } },
                         title: { display: true, text: 'ECOVACS vs Roborock 11月-12月広告費比較（百万円）', font: { size: 20, weight: 'bold' } }
@@ -2367,7 +2381,8 @@
                 },
                 options: {
                     responsive: true,
-                    maintainAspectRatio: false,
+                    maintainAspectRatio: true,
+                    aspectRatio: getAspectRatio(),
                     plugins: {
                         legend: { display: false },
                         title: { display: true, text: 'Roborock 2026年 月別売上目標（百万円）', font: { size: 20, weight: 'bold' } }
@@ -2406,7 +2421,8 @@
                 },
                 options: {
                     responsive: true,
-                    maintainAspectRatio: false,
+                    maintainAspectRatio: true,
+                    aspectRatio: getAspectRatio(),
                     plugins: {
                         legend: { display: false },
                         title: { display: true, text: 'Toretech 2025年 月次売上推移（百万円）', font: { size: 20, weight: 'bold' } }
@@ -2537,6 +2553,16 @@
             }
             
             initCharts();
+        });
+
+        
+        // ウィンドウサイズ変更時にグラフを再描画（デバイス回転対応）
+        let resizeTimer;
+        window.addEventListener('resize', function() {
+            clearTimeout(resizeTimer);
+            resizeTimer = setTimeout(function() {
+                initCharts();
+            }, 250);
         });
     </script>
 </body>
